@@ -18,12 +18,21 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  * directory.
  */
 public class Robot extends IterativeRobot {
+    //Steering modules - contains sensor & PID controller & Motor
+    SteerModuleLeft  leftSteerModule;
+    SteerModuleRight rightSteerModule;
+    Propulsion driveMotors;
+    
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
         System.out.println("Hello world!");
+        leftSteerModule = new SteerModuleLeft();
+        rightSteerModule = new SteerModuleRight();
+        driveMotors = new Propulsion();
     }
 
     /**
@@ -37,6 +46,15 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        //Update driver inputs
+        JoystickParty.update();
+        
+        //Update steering modules
+        leftSteerModule.update();
+        rightSteerModule.update();
+        
+        //Update drive motors
+        driveMotors.update();
         
     }
     
@@ -44,6 +62,16 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
+        System.out.println("\n============================================");
+        System.out.print("Left Voltage: " + Double.toString(leftSteerModule.sensor.getVoltage()));
+        System.out.print("  |  ");
+        System.out.println("Left Angle: " + Double.toString(leftSteerModule.sensor.getAngle()));
+        
+        System.out.print("Right Voltage: " + Double.toString(rightSteerModule.sensor.getVoltage()));
+        System.out.print("  |  ");
+        System.out.println("Right Angle: " + Double.toString(rightSteerModule.sensor.getAngle()));
+        
+        System.out.println("============================================\n");
     
     }
     

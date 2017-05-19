@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.PIDSource;
  * @author FIRSTUser
  */
 public class Encoders implements PIDSource {
-    double volt_in;
     double delt_v;
     double aang;
+    double measured_voltage;
     
     double voltsAtZeroAngle = 2.5;
     double degPerVolt = 30.0;
@@ -38,11 +38,17 @@ public class Encoders implements PIDSource {
         degPerVolt = slope;
     }
     
+    public void update(){
+        // Read voltage value from encoder
+        measured_voltage = input_enc.getVoltage();
+    }
     
+    public double getVoltage(){
+        return measured_voltage;
+    }
     
     public double getAngle(){
-        // Read voltage value from encoder
-        double measured_voltage = input_enc.getVoltage();
+        
         // Convert to angle
         pot(measured_voltage);
         // Return the measured angle
