@@ -7,7 +7,6 @@
 
 package edu.wpi.first.wpilibj.templates;
 
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 /**
@@ -41,6 +40,25 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
 
     }
+    
+    public void disabledInit(){
+        //turn off PID's while disabled
+        leftSteerModule.disable();
+        rightSteerModule.disable();
+    }
+    
+    public void disabledPeriodic(){
+        
+    }
+    
+    public void teleopInit(){
+        //Reset PID algorithms to zero-state
+        leftSteerModule.reset();
+        rightSteerModule.reset();
+        //Start up PID's before running teleop
+        leftSteerModule.enable();
+        rightSteerModule.enable();
+    }
 
     /**
      * This function is called periodically during operator control
@@ -58,19 +76,27 @@ public class Robot extends IterativeRobot {
         
     }
     
+    public void testInit(){
+        //Ensure PID's are off during testing
+        leftSteerModule.disable();
+        rightSteerModule.disable();
+    }
+    
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
+        //These were disabled in the testInit function, so they should not do anything.
+        leftSteerModule.update();
+        rightSteerModule.update();
+        
+        //Print a bunch of debug info.
         System.out.println("\n============================================");
-        System.out.print("Left Voltage: " + Double.toString(leftSteerModule.sensor.getVoltage()));
-        System.out.print("  |  ");
-        System.out.println("Left Angle: " + Double.toString(leftSteerModule.sensor.getAngle()));
-        
-        System.out.print("Right Voltage: " + Double.toString(rightSteerModule.sensor.getVoltage()));
-        System.out.print("  |  ");
-        System.out.println("Right Angle: " + Double.toString(rightSteerModule.sensor.getAngle()));
-        
+        System.out.println("Left Voltage: " + Double.toString(leftSteerModule.sensor.getVoltage()) + "V");
+        System.out.println("Left Angle: " + Double.toString(leftSteerModule.sensor.getAngle()) + "deg");
+        System.out.println("-----");
+        System.out.println("Right Voltage: " + Double.toString(rightSteerModule.sensor.getVoltage()) + "V");
+        System.out.println("Right Angle: " + Double.toString(rightSteerModule.sensor.getAngle()) + "deg");
         System.out.println("============================================\n");
     
     }

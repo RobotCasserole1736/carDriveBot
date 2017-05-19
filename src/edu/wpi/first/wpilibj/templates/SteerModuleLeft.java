@@ -31,5 +31,17 @@ public class SteerModuleLeft  {
         pid.setSetpoint(JoystickParty.getDriveAngleCmd());
     }
     
+    public void enable(){
+        pid.enable();
+    }
+    
+    public void disable(){
+        pid.disable();
+    }
+    
+    public void reset(){
+        pid.setSetpoint(0);
+        pid.reset();
+    }
     
 }
