@@ -18,7 +18,7 @@ public class Encoders implements PIDSource {
     double measured_voltage;
     
     double voltsAtZeroAngle = 2.5;
-    double degPerVolt = 30.0;
+    double degPerVolt = 60.0;
     
     AnalogChannel input_enc;
     
@@ -27,7 +27,7 @@ public class Encoders implements PIDSource {
      * @param port 
      */
     public Encoders(int port){
-        input_enc = new AnalogChannel(port);
+        input_enc = new AnalogChannel(1, port);
     }
     
     public void setZeroAngleVoltage(double voltage){
@@ -61,8 +61,8 @@ public class Encoders implements PIDSource {
      * @param volt_in voltage measured from encoder
      */
     public void pot(double volt_in){
-        delt_v =(volt_in - 2.5) ;
-        aang = delt_v*30;
+        delt_v =(volt_in - voltsAtZeroAngle) ;
+        aang = delt_v*degPerVolt;
     }
 
     public double pidGet() {

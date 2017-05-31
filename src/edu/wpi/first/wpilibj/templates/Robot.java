@@ -87,8 +87,8 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         //These were disabled in the testInit function, so they should not do anything.
-        leftSteerModule.update();
-        rightSteerModule.update();
+        leftSteerModule.sensor.update();
+        rightSteerModule.sensor.update();
         
         //Print a bunch of debug info.
         System.out.println("\n============================================");

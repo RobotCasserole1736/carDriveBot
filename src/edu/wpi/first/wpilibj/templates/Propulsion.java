@@ -28,10 +28,10 @@ public class Propulsion {
     }
     
     public void update(){
-        driveMotorFL.set(JoystickParty.getDriveVelCmd());
-        driveMotorFR.set(-JoystickParty.getDriveVelCmd());
-        driveMotorRL.set(JoystickParty.getDriveVelCmd());
-        driveMotorRR.set(-JoystickParty.getDriveVelCmd());
+        driveMotorFL.set(-JoystickParty.getDriveVelCmd());
+        driveMotorFR.set(JoystickParty.getDriveVelCmd());
+        driveMotorRL.set(-JoystickParty.getDriveVelCmd());
+        driveMotorRR.set(JoystickParty.getDriveVelCmd());
     }
     
 }

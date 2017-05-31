@@ -13,14 +13,23 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class JoystickParty {
             
-    public static Joystick driverJoy = new Joystick(0);
+    public static Joystick driverJoy = new Joystick(1);
     private static double steerAxisVal = 0;
     private static double driveAxisVal = 0;
     
     
     public static void update(){
-        steerAxisVal = driverJoy.getRawAxis(0);
-        driveAxisVal = driverJoy.getRawAxis(1);
+        /* Measure inputs from joystick */
+        steerAxisVal = driverJoy.getRawAxis(1);
+        driveAxisVal = driverJoy.getRawAxis(3);
+        
+        //Apply deadzones
+        if(Math.abs(driveAxisVal) < Constants.FwdRevCmd_Deadzone){
+            driveAxisVal = 0;
+        }
+        
+        //Scale things
+        steerAxisVal = steerAxisVal * steerAxisVal * steerAxisVal; //Stupid java embedded
     }
     
     //Returns a desired steering angle in degrees
