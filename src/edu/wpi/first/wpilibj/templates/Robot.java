@@ -38,7 +38,8 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-
+        leftSteerModule.motor.set(0.3);
+        rightSteerModule.motor.set(0.3);
     }
     
     public void disabledInit(){
@@ -66,6 +67,9 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         //Update driver inputs
         JoystickParty.update();
+        
+        leftSteerModule.sensor.update();
+        rightSteerModule.sensor.update();
         
         //Update steering modules
         leftSteerModule.update();

@@ -26,13 +26,13 @@ public class Constants {
     
     //Steering module controller gains
     //Tune these!
-    static double R_steer_kP = 0.025;
-    static double R_steer_kD = 0.000;
-    static double R_steer_kI = 0.000;
+    static double R_steer_kP = 0.009;
+    static double R_steer_kD = 0.001;
+    static double R_steer_kI = 0.0007;
 
-    static double L_steer_kP = 0.025;
-    static double L_steer_kD = 0.000;
-    static double L_steer_kI = 0.000;    
+    static double L_steer_kP = 0.009;
+    static double L_steer_kD = 0.001;
+    static double L_steer_kI = 0.0007;    
     
     //Steering module input conversion constants
     //Tune These!

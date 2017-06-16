@@ -25,6 +25,8 @@ public class SteerModuleRight  {
                                 Constants.R_steer_kD, 
                                 sensor, motor);
         
+        pid.setOutputRange(-0.3, 0.3);
+        
     }
     
     public void update(){
